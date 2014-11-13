@@ -1,0 +1,7 @@
+name = luggage_ux
+description = User experience enhancements for luggage.
+core = 7.x
+package = Luggag
+version = 7.x-1.0
+project = luggage_ux
+features[features_api][] = api:2
