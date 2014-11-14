@@ -1,7 +1,7 @@
 luggage_ux
 ==========
 
-####Note: This repo is in active development and ownership will be transfered to [ISUBIT](https://github.com/isubit) once the initial development is complete.
+####Note: This repo is in active development and ownership will be transfered to [ISUBIT](https://github.com/isubit) once the initial development is complete. Use at your own peril.
 
 A Luggage feature that contains user experience add-ons
 
