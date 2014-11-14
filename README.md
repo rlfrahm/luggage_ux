@@ -1,4 +1,4 @@
 luggage_ux
 ==========
 
-User interface enhancements to luggage
+A Luggage feature that contains user experience add-ons
