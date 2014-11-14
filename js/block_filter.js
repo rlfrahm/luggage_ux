@@ -11,6 +11,7 @@
         var length_requirement = 7;
         $('.block .item-list').each(function() {
           if($(this).find('> ul > li').length > length_requirement) {
+            console.log('here');
             var $e = $('<div class="block-search-input"><input type="text" value="" placeholder="Filter items" style="display: none"><div class="pull-down"><span class="icon-filter"></span></div><div class="clear-search" style="display: none"><span>x</span></div></div>');
             $e.find('input').keyup(function(e) {
               if($(this).val() == '') {

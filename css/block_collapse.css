@@ -1,0 +1,15 @@
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-top: 8px solid #fff;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    content: "";
+    opacity: 0.3;
+    margin-top: 14px;
+    filter: alpha(opacity=30);
+    position: absolute;
+    right: 12px;
+}

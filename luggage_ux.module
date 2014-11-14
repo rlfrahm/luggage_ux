@@ -11,6 +11,23 @@ function luggage_ux_form_alter(&$form, &$form_state, $form_id) {
 
 function luggage_ux_block_view_alter(&$blocks) {
   if($blocks) {
-    drupal_add_js(drupal_get_path('module', 'luggage_ux') . 'js/block_filter.js');
+    _attach_block_filter();
+    _attach_block_collapse();
+    _attach_tag_box();
   }
+}
+
+function _attach_tag_box() {
+  drupal_add_js(drupal_get_path('module', 'luggage_ux') . '/js/tag_box.js');
+  drupal_add_css(drupal_get_path('module', 'luggage_ux') . '/css/tag_box.css');
+}
+
+function _attach_block_collapse() {
+  drupal_add_js(drupal_get_path('module', 'luggage_ux') . '/js/block_collapse.js');
+  drupal_add_css(drupal_get_path('module', 'luggage_ux') . '/css/block_collapse.css');
+}
+
+function _attach_block_filter() {
+  drupal_add_js(drupal_get_path('module', 'luggage_ux') . '/js/block_filter.js');
+  drupal_add_css(drupal_get_path('module', 'luggage_ux') . '/css/block_filter.css');
 }
