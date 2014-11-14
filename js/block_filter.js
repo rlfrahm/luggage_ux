@@ -12,7 +12,7 @@
         $('.block .item-list').each(function() {
           if($(this).find('> ul > li').length > length_requirement) {
             console.log('here');
-            var $e = $('<div class="block-search-input"><input type="text" value="" placeholder="Filter items" style="display: none"><div class="pull-down"><span class="icon-filter"></span></div><div class="clear-search" style="display: none"><span>x</span></div></div>');
+            var $e = $('<div class="block-search-input"><input class="bs-input" type="text" value="" placeholder="Filter items" style="display: none"><div class="pull-down"><span class="icon-filter"></span></div><div class="clear-search" style="display: none"><span>x</span></div></div>');
             $e.find('input').keyup(function(e) {
               if($(this).val() == '') {
                 $(this).parent().parent().find('li').show();
@@ -32,8 +32,8 @@
         });
         $('.block-search-input .pull-down').click(function() {
           $(this).parent().find('input').toggle();
-          $(this).find('span').toggleClass('icon-filter').toggleClass('icon-close');
-          if($(this).find('span').hasClass('icon-close')) {
+          $(this).find('span').toggleClass('icon-filter').toggleClass('icon-collapse-up');
+          if($(this).find('span').hasClass('icon-collapse-up')) {
             $(this).parent().find('input').focus();
           }
         });
