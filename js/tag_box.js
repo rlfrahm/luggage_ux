@@ -71,7 +71,10 @@
             var arr = $(this).parent().parent().parent().find('.form-text').val().split(",");
             arr.splice($(this).parent().index(),1);
             $(this).parent().parent().parent().find('.form-text').val(arr.join());
-            $(this).parent().remove();
+            $(this).parent().addClass('pop');
+            var thiss = this;
+            setTimeout(function(){$(thiss).parent().remove();}, 100);
+            //$(this).parent().remove();
             block = true;
           });
           $tagscontainer.find('.add-tag').before($e);

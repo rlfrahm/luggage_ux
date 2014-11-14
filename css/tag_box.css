@@ -41,6 +41,15 @@
     transition: background-color 0.1s ease;
     color: #fff;
     margin-right: 3px;
+    -webkit-animation:pop-in 0.1s;
+    -moz-animation:pop-in 0.1s;
+    -ms-animation:pop-in 0.1s;
+}
+
+.field-type-taxonomy-term-reference .suitcase-tag-input-tag.pop {
+    -webkit-animation:pop 0.1s;
+    -moz-animation:pop 0.1s;
+    -ms-animation:pop 0.1s;
 }
 
 .field-type-taxonomy-term-reference .suitcase-tag-input-tag .remove {
@@ -72,4 +81,30 @@
     cursor: pointer;
     background: #3071a9;
     color: #fff;
+}
+
+@-webkit-keyframes pop {
+    0% { opacity: 1; -webkit-transform: scale(1); }
+    100% { opacity: 0; -webkit-transform: scale(2); display: none; }
+}
+@-moz-keyframes pop {
+    0% { opacity: 1; -webkit-transform: scale(1); }
+    100% { opacity: 0; -webkit-transform: scale(2); display: none; }
+}
+@keyframes pop {
+    0% { opacity: 1; -webkit-transform: scale(1); }
+    100% { opacity: 0; -webkit-transform: scale(2); display: none; }
+}
+
+@-webkit-keyframes pop-in {
+    0% { opacity: 0; -webkit-transform: scale(0.1); display: none; }
+    100% { opacity: 1; -webkit-transform: scale(1); display: block; }
+}
+@-moz-keyframes pop-in {
+    0% { opacity: 1; -webkit-transform: scale(1); display: none; }
+    100% { opacity: 0; -webkit-transform: scale(2); display: block; }
+}
+@keyframes pop-in {
+    0% { opacity: 1; -webkit-transform: scale(1); display: none; }
+    100% { opacity: 0; -webkit-transform: scale(2); display: block; }
 }
