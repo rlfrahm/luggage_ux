@@ -8,3 +8,9 @@ function luggage_ux_form_alter(&$form, &$form_state, $form_id) {
 
   }
 }
+
+function luggage_ux_block_view_alter(&$blocks) {
+  if($blocks) {
+    drupal_add_js(drupal_get_path('module', 'luggage_ux') . 'js/block_filter.js');
+  }
+}
