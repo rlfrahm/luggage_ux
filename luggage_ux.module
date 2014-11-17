@@ -72,12 +72,14 @@ function _luggage_ux_form_block_admin_configure_submit($form, &$form_state) {
   }
 }
 
-function luggage_ux_block_view_alter(&$blocks) {
-  if($blocks) {
-    if(variable_get('luggage_ux_block_collapse_enabled', NULL)) {
+function luggage_ux_block_view_alter(&$data, $block) {
+  if($block) {
+    $delta = $block->delta;
+    if(variable_get('luggage_ux_block_collapse_block_' . $delta . '_enabled', NULL)) {
+      $data['content']['#attributes']['class'][] = 'this-is-collapsible';
       _attach_block_collapse();
     }
-    if(variable_get('luggage_ux_block_filter_enabled', NULL)) {
+    if(variable_get('luggage_ux_block_filter_block_' . $delta . '_enabled', NULL)) {
       _attach_block_filter();
     }
     if(variable_get('luggage_ux_tag_box_enabled', NULL)) {
