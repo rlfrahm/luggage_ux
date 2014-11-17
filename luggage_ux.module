@@ -3,17 +3,69 @@
  * @file
  * Drupal needs this blank file.
  */
-function luggage_ux_form_alter(&$form, &$form_state, $form_id) {
-  if($form) {
 
-  }
+/*
+ * Implements hook_menu()
+ */
+
+function luggage_ux_menu() {
+  $items = array();
+
+  $items['admin/config/user-interface/luggage_ux'] = array(
+    'title' => 'Luggage UX',
+    'description' => 'Configuration for the Luggage UX module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('luggage_ux_form'),
+    'access arguments' => array('administer users'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
 }
+
+function luggage_ux_form($form, &$form_state) {
+  $form['luggage_ux_block_collapse_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Block Collapsed enabled'),
+    '#description' => t('Enables/disables the block collapse add-on'),
+    '#default_value' => variable_get('luggage_ux_block_collapse_enabled', 'Block Collapse Enabled'),
+  );
+
+  $form['luggage_ux_block_filter_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Block Filter enabled'),
+    '#description' => t('Enables/disables the block filter add-on'),
+    '#default_value' => variable_get('luggage_ux_block_filter_enabled', 'Block Filter Enabled'),
+  );
+
+  $form['luggage_ux_tag_box_enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Tag Box enabled'),
+    '#description' => t('Enables/disables the tag box add-on'),
+    '#default_value' => variable_get('luggage_ux_tag_box_enabled', 'Tag Box Enabled'),
+  );
+
+  return system_settings_form($form);
+}
+
+//function luggage_ux_form_submit($form, &$form_state) {
+//  variable_set('luggage_ux_block_collapse_enabled', $form_state['values']['luggage_ux_block_collapse_enabled']);
+//  variable_set('luggage_ux_block_filter_enabled', $form_state['values']['luggage_ux_block_filter_enabled']);
+//  variable_set('luggage_ux_tag_box_enabled', $form_state['values']['luggage_ux_tag_box_enabled']);
+//  drupal_set_message(t('The settings have been saved'));
+//}
 
 function luggage_ux_block_view_alter(&$blocks) {
   if($blocks) {
-    _attach_block_filter();
-    _attach_block_collapse();
-    _attach_tag_box();
+    if(variable_get('luggage_ux_block_collapse_enabled', NULL)) {
+      _attach_block_collapse();
+    }
+    if(variable_get('luggage_ux_block_filter_enabled', NULL)) {
+      _attach_block_filter();
+    }
+    if(variable_get('luggage_ux_tag_box_enabled', NULL)) {
+      _attach_tag_box();
+    }
   }
 }
 
