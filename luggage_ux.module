@@ -48,13 +48,6 @@ function luggage_ux_form($form, &$form_state) {
   return system_settings_form($form);
 }
 
-//function luggage_ux_form_submit($form, &$form_state) {
-//  variable_set('luggage_ux_block_collapse_enabled', $form_state['values']['luggage_ux_block_collapse_enabled']);
-//  variable_set('luggage_ux_block_filter_enabled', $form_state['values']['luggage_ux_block_filter_enabled']);
-//  variable_set('luggage_ux_tag_box_enabled', $form_state['values']['luggage_ux_tag_box_enabled']);
-//  drupal_set_message(t('The settings have been saved'));
-//}
-
 function luggage_ux_block_view_alter(&$blocks) {
   if($blocks) {
     if(variable_get('luggage_ux_block_collapse_enabled', NULL)) {
