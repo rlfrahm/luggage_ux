@@ -48,6 +48,30 @@ function luggage_ux_form($form, &$form_state) {
   return system_settings_form($form);
 }
 
+function luggage_ux_form_block_admin_configure_alter(&$form, &$form_state) {
+  if($form) {
+    $form['luggage_ux'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Block Filter Add-on'),
+      '#collapsible' => false,
+      '#description' => t('Enable/disable the block filter add-on, which adds a filter input box to the block.'),
+      'block_filter_enabled' => array(
+        '#type' => 'checkbox',
+        '#title' => t('Enabled'),
+        '#default_value' => variable_get('luggage_ux_block_filter_block_' . $form['delta']['#value'] . '_enabled', 'Block Filter ' . $form['delta']['#value'] . ' Enabled'),
+      ),
+    );
+
+    $form['#submit'][] = '_luggage_ux_form_block_admin_configure_submit';
+  }
+}
+
+function _luggage_ux_form_block_admin_configure_submit($form, &$form_state) {
+  if($form_state) {
+    variable_set('luggage_ux_block_filter_block_' . $form_state['build_info']['args'][1] . '_enabled', $form_state['values']['block_filter_enabled']);
+  }
+}
+
 function luggage_ux_block_view_alter(&$blocks) {
   if($blocks) {
     if(variable_get('luggage_ux_block_collapse_enabled', NULL)) {
