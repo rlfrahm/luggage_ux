@@ -13,3 +13,17 @@
     position: absolute;
     right: 12px;
 }
+
+.luggage_ux-block-facet .block-title:hover {
+    cursor: pointer;
+}
+
+.luggage_ux-block-facet .block-title:hover .caret {
+    opacity: 0.8;
+}
+
+.collapsed-indicator-img {
+    float: right;
+    margin: 0 2% 0 0;
+    opacity: 0.9;
+}
