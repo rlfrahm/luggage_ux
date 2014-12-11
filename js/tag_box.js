@@ -6,13 +6,13 @@
   /**
    * @todo
    */
-  Drupal.behaviors.suitcaseTagInput = {
+  Drupal.behaviors.luggageUTagInput = {
     attach: function (context) {
-      $('body', context).once('suitcaseTagInput', function() {
+      $('body', context).once('luggageUTagInput', function() {
         var $inputs = $('.field-type-taxonomy-term-reference input[type="text"]'),
           block = false;
-        $inputs/*.css('color', '#fff')*/.wrap('<div class="suitcase-tag-input-text-wrapper"></div>');
-        $('.suitcase-tag-input-text-wrapper').append('<div class="tags-container"><div class="add-tag"><input type="text" value=""></div></div><div class="term-autocomplete-select" style="display: none"></div>');
+        $inputs/*.css('color', '#fff')*/.wrap('<div class="luggage_ux-tag-input-text-wrapper"></div>');
+        $('.luggage_ux-tag-input-text-wrapper').append('<div class="tags-container"><div class="add-tag"><input type="text" value=""></div></div><div class="term-autocomplete-select" style="display: none"></div>');
         $inputs.each(function(i, val) {
           var arr = $(this).val().split(",");
           for(var i=arr.length-1;i>-1;i--) {
@@ -21,7 +21,7 @@
             }
           }
         });
-        $('.suitcase-tag-input-text-wrapper').click(function() {
+        $('.luggage_ux-tag-input-text-wrapper').click(function() {
           $(this).find('.add-tag input').focus();
         });
         $('.add-tag').keyup(function(e) {
@@ -50,7 +50,7 @@
           }
         });
 
-        $('.suitcase-tag-input-text-wrapper').focus(function(e) {
+        $('.luggage_ux-tag-input-text-wrapper').focus(function(e) {
           $(this).bind('focusout',function(e) {
             // Clicked elsewhere, add to tags
             console.log(e);
@@ -65,7 +65,7 @@
         });
 
         function addTag($tagscontainer, i, text) {
-          var $e = $('<span class="suitcase-tag-input-tag">' + text + ' <span class="remove">x</span></span>');
+          var $e = $('<span class="luggage_ux-tag-input-tag">' + text + ' <span class="remove">x</span></span>');
           $e.find('.remove').click(function(e) {
             // Remove tag
             var arr = $(this).parent().parent().parent().find('.form-text').val().split(",");
@@ -82,7 +82,7 @@
 
         function processNewTag(el) {
           if($(el).find('input').val() != "") {
-            addTag($(el).parent(),$(el).parent().find('.suitcase-tag-input-tag').length, $(el).find('input').val().replace(",",""));
+            addTag($(el).parent(),$(el).parent().find('.luggage_ux-tag-input-tag').length, $(el).find('input').val().replace(",",""));
             var t = $(el).parent().parent().find('.form-text').val() + ',' + $(el).find('input').val();
             $(el).parent().parent().find('.form-text').val(t);
             $(el).find('input').val('');
