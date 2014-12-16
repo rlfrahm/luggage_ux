@@ -54,12 +54,16 @@ function luggage_ux_preprocess_block(&$variables) {
       $variables['classes_array'][] = 'luggage_ux_block_filter';
       _attach_block_filter();
     }
+    if(variable_get('luggage_ux_block_collapse_block_'.$variables['block']->delta.'_enabled',Null)) {
+      $variables['classes_array'][] = 'luggage_ux_block_collapse';
+      _attach_block_collapse();
+    }
   }
 }
 
 function luggage_ux_form_block_admin_configure_alter(&$form, &$form_state) {
   if($form) {
-    $form['luggage_ux'] = array(
+    $form['luggage_ux_block_filter'] = array(
       '#type' => 'fieldset',
       '#title' => t('Block Filter Add-on'),
       '#collapsible' => false,
@@ -71,6 +75,18 @@ function luggage_ux_form_block_admin_configure_alter(&$form, &$form_state) {
       ),
     );
 
+    $form['luggage_ux__block_collapse'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Block Collapse Add-on'),
+      '#collapsible' => false,
+      '#description' => t('Enable/disable the block collapse add-on, which gives the user the ability to treat a block as a clickable drop-down menu.'),
+      'block_collapse_enabled' => array(
+        '#type' => 'checkbox',
+        '#title' => t('Enabled'),
+        '#default_value' => variable_get('luggage_ux_block_collapse_block_' . $form['delta']['#value'] . '_enabled', 'Block Collapse ' . $form['delta']['#value'] . ' Enabled'),
+      ),
+    );
+
     $form['#submit'][] = '_luggage_ux_form_block_admin_configure_submit';
   }
 }
@@ -78,6 +94,7 @@ function luggage_ux_form_block_admin_configure_alter(&$form, &$form_state) {
 function _luggage_ux_form_block_admin_configure_submit($form, &$form_state) {
   if($form_state) {
     variable_set('luggage_ux_block_filter_block_' . $form_state['build_info']['args'][1] . '_enabled', $form_state['values']['block_filter_enabled']);
+    variable_set('luggage_ux_block_collapse_block_' . $form_state['build_info']['args'][1] . '_enabled', $form_state['values']['block_collapse_enabled']);
   }
 }
 

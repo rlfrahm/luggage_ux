@@ -9,10 +9,10 @@
     Drupal.behaviors.luggageUxBlockCollapse = {
         attach: function (context) {
             $('body', context).once('luggageUxBlockCollapse', function() {
-                $('aside section.block').addClass('luggage_ux-block-facet');
-                var touched = false;
+                var $blocks = $('.luggage_ux_block_collapse'),
+                    touched = false;
 
-                $('.luggage_ux-block-facet .block-title').each(function() {
+                $blocks.find('.block-title').each(function() {
                     $(this).append('<span class="caret"></span>');
                 }).bind('click touchend', function(e) {
                     if(touched) {e.preventDefault();touched=false;return;}
@@ -21,7 +21,7 @@
                 });
 
                 if($(window).width() < 980) {
-                    $('.luggage_ux-block-facet .content').toggle();
+                    $blocks.find('.content').toggle();
                 }
             });
         }
