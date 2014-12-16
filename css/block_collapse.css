@@ -3,7 +3,7 @@
     width: 0;
     height: 0;
     vertical-align: top;
-    border-top: 8px solid #fff;
+    border-top: 8px solid #000;
     border-right: 8px solid transparent;
     border-left: 8px solid transparent;
     content: "";
@@ -14,16 +14,14 @@
     right: 12px;
 }
 
-.luggage_ux-block-facet .block-title:hover {
+.luggage_ux_block_collapse h3:hover,
+.luggage_ux_block_collapse h2:hover,
+.luggage_ux_block_collapse .block-title:hover {
     cursor: pointer;
 }
 
-.luggage_ux-block-facet .block-title:hover .caret {
+.luggage_ux_block_collapse h3:hover .caret,
+.luggage_ux_block_collapse h2:hover .caret,
+.luggage_ux_block_collapse .block-title:hover .caret {
     opacity: 0.8;
-}
-
-.collapsed-indicator-img {
-    float: right;
-    margin: 0 2% 0 0;
-    opacity: 0.9;
 }

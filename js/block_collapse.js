@@ -12,8 +12,8 @@
                 var $blocks = $('.luggage_ux_block_collapse'),
                     touched = false;
 
-                $blocks.find('.block-title').each(function() {
-                    $(this).append('<span class="caret"></span>');
+                $blocks.find('> h3, > h2, .block-title').each(function() {
+                    $(this).prepend('<span class="caret"></span>');
                 }).bind('click touchend', function(e) {
                     if(touched) {e.preventDefault();touched=false;return;}
                     $(this).parent().find('.content').toggle();
