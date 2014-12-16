@@ -24,19 +24,19 @@ function luggage_ux_menu() {
 }
 
 function luggage_ux_form($form, &$form_state) {
-  $form['luggage_ux_block_collapse_enabled'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Block Collapsed enabled'),
-    '#description' => t('Enables/disables the block collapse add-on'),
-    '#default_value' => variable_get('luggage_ux_block_collapse_enabled', 'Block Collapse Enabled'),
-  );
-
-  $form['luggage_ux_block_filter_enabled'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Block Filter enabled'),
-    '#description' => t('Enables/disables the block filter add-on'),
-    '#default_value' => variable_get('luggage_ux_block_filter_enabled', 'Block Filter Enabled'),
-  );
+//  $form['luggage_ux_block_collapse_enabled'] = array(
+//    '#type' => 'checkbox',
+//    '#title' => t('Block Collapsed enabled'),
+//    '#description' => t('Enables/disables the block collapse add-on'),
+//    '#default_value' => variable_get('luggage_ux_block_collapse_enabled', 'Block Collapse Enabled'),
+//  );
+//
+//  $form['luggage_ux_block_filter_enabled'] = array(
+//    '#type' => 'checkbox',
+//    '#title' => t('Block Filter enabled'),
+//    '#description' => t('Enables/disables the block filter add-on'),
+//    '#default_value' => variable_get('luggage_ux_block_filter_enabled', 'Block Filter Enabled'),
+//  );
 
   $form['luggage_ux_tag_box_enabled'] = array(
     '#type' => 'checkbox',
@@ -58,6 +58,12 @@ function luggage_ux_preprocess_block(&$variables) {
       $variables['classes_array'][] = 'luggage_ux_block_collapse';
       _attach_block_collapse();
     }
+  }
+}
+
+function luggage_ux_form_alter(&$form, &$form_state, $form_id) {
+  if(variable_get('luggage_ux_tag_box_enabled', Null)) {
+    _attach_tag_box();
   }
 }
 
@@ -97,20 +103,6 @@ function _luggage_ux_form_block_admin_configure_submit($form, &$form_state) {
     variable_set('luggage_ux_block_collapse_block_' . $form_state['build_info']['args'][1] . '_enabled', $form_state['values']['block_collapse_enabled']);
   }
 }
-
-//function luggage_ux_block_view_alter(&$data, $block) {
-//  // drupal_add_js/drupal_add_css only attach files one time, so no worries of adding
-//  // a file more than once
-//  if(variable_get('luggage_ux_block_collapse_enabled', NULL)) {
-//    _attach_block_collapse();
-//  }
-//  if(variable_get('luggage_ux_block_filter_enabled', NULL)) {
-//    _attach_block_filter();
-//  }
-//  if(variable_get('luggage_ux_tag_box_enabled', NULL)) {
-//    _attach_tag_box();
-//  }
-//}
 
 function _attach_tag_box() {
   drupal_add_js(drupal_get_path('module', 'luggage_ux') . '/js/tag_box.js');
