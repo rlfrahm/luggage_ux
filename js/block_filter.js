@@ -8,8 +8,8 @@
   Drupal.behaviors.luggageUxBlockFilter = {
     attach: function (context) {
       $('body', context).once('luggageUxBlockFilter', function() {
-        var length_requirement = 7;
-        $('.block .item-list').each(function() {
+        var length_requirement = 0;
+        $('.luggage_ux_block_filter .item-list').each(function() {
           if($(this).find('> ul > li').length > length_requirement) {
             var $e = $('<div class="block-search-input"><input class="bs-input" type="text" value="" placeholder="Filter items" style="display: none"><div class="pull-down"><span class="icon-filter"></span></div><div class="clear-search" style="display: none"><span>x</span></div></div>');
             $e.find('input').keyup(function(e) {
